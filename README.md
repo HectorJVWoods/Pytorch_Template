@@ -18,3 +18,6 @@ I am too lazy to write proper docs.
 
 ## Example prediction samples
 ![Example prediction samples](example_prediction_samples.png)
+
+## Example prediction on single image
+![Example prediction on single image](example_prediction_single_image.png)
