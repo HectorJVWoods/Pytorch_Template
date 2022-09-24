@@ -3,6 +3,13 @@ import torch.nn.functional as func
 
 
 def test(network, test_loader, test_losses=None):
+    """
+    Test the network on the test set.
+    :param network: The network to test.
+    :param test_loader: The test set.
+    :param test_losses: The list of test losses (from previous steps). If None, a new list will be created.
+    :return:
+    """
     if test_losses is None:
         test_losses = []
     network.eval()

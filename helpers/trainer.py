@@ -8,6 +8,17 @@ from helpers.tester import test
 
 def train_one_epoch(train_loader, network, optimizer, epoch, train_losses, train_counter,
                     hyperparameters):
+    """
+    Trains the network for one epoch.
+    :param train_loader: The training data loader.
+    :param network: The network to train.
+    :param optimizer: The optimizer to use.
+    :param epoch: The current epoch.
+    :param train_losses: The list of training losses.
+    :param train_counter: The list of training counters.
+    :param hyperparameters: The hyperparameters to use.
+    :return: The updated training losses and training counters.
+    """
     network.train()
     for batch_idx, (data, target) in enumerate(train_loader):
         optimizer.zero_grad()
@@ -26,6 +37,16 @@ def train_one_epoch(train_loader, network, optimizer, epoch, train_losses, train
 
 
 def load_trained_model(model_name, net, test_loader, img_transform=None):
+    """
+    Loads a trained model from the saved_models folder. returns a TrainedModel object.
+    :param model_name: The name of the model to load.
+    :param net: The network architecture of the model. If they do not match, you will get
+    unexpected behaviour.
+    :param test_loader: The test loader to use.
+    :param img_transform: The image transform to
+    use. If the model was saved with a different transform, you will get unexpected behaviour.
+    :return: A TrainedModel object.
+    """
     model_filename = "results/" + model_name + "/training/" + "model_weights.pth"
     results_filename = "results/" + model_name + "/training/" + "training_results.txt"
     model_state_dict = torch.load(model_filename)
@@ -42,6 +63,12 @@ def load_trained_model(model_name, net, test_loader, img_transform=None):
 
 
 def train(training_settings, saved_model_name="autosave"):
+    """
+    Trains a network.
+    :param training_settings: The training settings to use.
+    :param saved_model_name: The name to use for the saved model.
+    :return:
+    """
     network = training_settings.network
     test_loader = training_settings.test_loader
     train_loader = training_settings.train_loader
